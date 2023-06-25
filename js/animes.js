@@ -15,6 +15,16 @@ const myApp = {
             fetch(this.url)
             .then(response => response.json())
             .then(data => this.animes = data)
+        },
+        delete(id){
+            let url = this.url +"/"+id
+            console.log(url)
+            let options = {
+                method: "DELETE",
+            }
+            fetch(url, options)
+            .then(res => res.json())
+            .then(res => location.reload())
         }
     },
     mounted(){

@@ -26,7 +26,7 @@
                                     <div class="d-flex justify-content-around align-items-center">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             :data-bs-target="'#see'+anime.id">Ver mas</button>
-                                        <button type="button" class="btn btn-primary">Eliminar</button>
+                                        <button type="button" class="btn btn-primary" v-on:click="this.delete(anime.id)">Eliminar</button>
                                         <button type="button" class="btn btn-primary">Editar</button>
                                     </div>
                                 </div>
