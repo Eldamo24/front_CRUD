@@ -1,0 +1,10 @@
+#contenido {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+
+.img-modals{
+    width: 100%;
+    height: auto;
+}
