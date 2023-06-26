@@ -1,5 +1,7 @@
 let boton = document.getElementById("guardarAnime")
 boton.disabled = true
+let botonUp = document.getElementById("upButton")
+botonUp.disabled=true
 
 
 const validarNumero = (input, div) => {
@@ -65,9 +67,27 @@ const validar = () => {
     }
 }
 
+const validarMod = () => {
+    let nombreValido = validarInputNombre(document.getElementById("nombreMod"), document.getElementById("mensajeNombreMod"))
+    let temporadasValido = validarNumero(document.getElementById("temporadasMod"), document.getElementById("temporadasMensajeMod"))
+    let capituloValido = validarNumero(document.getElementById("capitulosMod"), document.getElementById("capitulosMensajeMod"))
+    let descripcionValido = validarInputDescripcion(document.getElementById("descripcionMod"), document.getElementById("descripcionMensajeMod"))
+    let imagenValido = validarInputDescripcion(document.getElementById("imagenMod"), document.getElementById("imagenMensajeMod"))
+    if(nombreValido  && temporadasValido && capituloValido && descripcionValido && imagenValido){
+        botonUp.disabled = false
+    }else{
+        botonUp.disabled = true
+    }
+}
+
 
 document.getElementById("nombre").addEventListener("input", validar)
 document.getElementById("temporadas").addEventListener("input", validar)
 document.getElementById("capitulos").addEventListener("input", validar)
 document.getElementById("descripcion").addEventListener("input", validar)
 document.getElementById("imagen").addEventListener("input", validar) 
+document.getElementById("nombreMod").addEventListener("input", validarMod)
+document.getElementById("temporadasMod").addEventListener("input", validarMod)
+document.getElementById("capitulosMod").addEventListener("input", validarMod)
+document.getElementById("descripcionMod").addEventListener("input", validarMod)
+document.getElementById("imagenMod").addEventListener("input", validarMod) 
