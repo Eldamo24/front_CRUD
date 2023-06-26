@@ -60,6 +60,23 @@ const myApp = {
                 this.imagen = anime.imagen
             })
         },
+        limpiarDatos(){
+            document.getElementById("nombre").value = ""
+            document.getElementById("temporadas").value = ""
+            document.getElementById("capitulos").value = ""
+            document.getElementById("descripcion").value = ""
+            document.getElementById("imagen").value = ""
+            document.getElementById("nombre").style.borderBlockColor = ""
+            document.getElementById("temporadas").style.borderBlockColor = ""
+            document.getElementById("capitulos").style.borderBlockColor = ""
+            document.getElementById("descripcion").style.borderBlockColor = ""
+            document.getElementById("imagen").style.borderBlockColor = ""
+            this.nombre = ""
+            this.temporadas = 0
+            this.capitulos = 0
+            this.descripcion = ""
+            this.imagen = ""
+        },
         update(id){
             let url = this.url  +"/"+id
             
@@ -81,7 +98,6 @@ const myApp = {
                 alert("Anime modificado")
                 location.reload()
             })
-            
         }
     },
     mounted(){
