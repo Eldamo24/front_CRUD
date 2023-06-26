@@ -2,6 +2,7 @@ const myApp = {
     data(){
         return {
             animes: [],
+            id: 0,
             nombre: "",
             temporadas: 0,
             capitulos: 0,
@@ -18,13 +19,47 @@ const myApp = {
         },
         delete(id){
             let url = this.url +"/"+id
-            console.log(url)
             let options = {
                 method: "DELETE",
             }
             fetch(url, options)
             .then(res => res.json())
             .then(res => location.reload())
+        },
+        crear(){
+            let anime ={
+                nombre:this.nombre,
+                temporadas:this.temporadas,
+                capitulos:this.capitulos,
+                descripcion:this.descripcion,
+                imagen:this.imagen
+            }
+            let options = {
+                body: JSON.stringify(anime),
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                redirect: "follow"
+            }
+            fetch(this.url, options)
+            .then(function (){
+                alert("Se guardo el anime")
+                location.reload()
+            })
+        },
+        cargarDatos(id){
+            let url = this.url +"/"+id
+            let anime
+            fetch(url)
+            .then(response => response.json())
+            .then(data =>{
+                anime = data
+                this.id = anime.id
+                this.nombre = anime.nombre
+                this.temporadas = anime.temporadas
+                this.capitulos = anime.capitulos
+                this.descripcion = anime.descripcion
+                this.imagen = anime.imagen
+            })
         }
     },
     mounted(){
