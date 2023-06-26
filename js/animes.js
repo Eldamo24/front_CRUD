@@ -42,7 +42,7 @@ const myApp = {
             }
             fetch(this.url, options)
             .then(function (){
-                alert("Se guardo el anime")
+                alert("El anime se guardo correctamente")
                 location.reload()
             })
         },
@@ -76,6 +76,7 @@ const myApp = {
             this.capitulos = 0
             this.descripcion = ""
             this.imagen = ""
+            document.getElementById("guardarAnime").disabled = true
         },
         update(id){
             let url = this.url  +"/"+id
@@ -95,7 +96,7 @@ const myApp = {
             }
             fetch(url, options)
             .then(function () {
-                alert("Anime modificado")
+                alert("El anime se modifico correctamente")
                 location.reload()
             })
         }
