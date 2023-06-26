@@ -53,12 +53,14 @@ const myApp = {
             .then(response => response.json())
             .then(data =>{
                 anime = data
+                this.id = anime.id
                 this.nombre = anime.nombre
                 this.temporadas = anime.temporadas
                 this.capitulos = anime.capitulos
                 this.descripcion = anime.descripcion
                 this.imagen = anime.imagen
             })
+            document.getElementById("idMod").disabled = true
         },
         limpiarDatos(){
             document.getElementById("nombre").value = ""
@@ -78,8 +80,21 @@ const myApp = {
             this.imagen = ""
             document.getElementById("guardarAnime").disabled = true
         },
-        update(id){
-            let url = this.url  +"/"+id
+        limpiarDatos2(){
+            document.getElementById("nombreMod").style.borderBlockColor = ""
+            document.getElementById("temporadasMod").style.borderBlockColor = ""
+            document.getElementById("capitulosMod").style.borderBlockColor = ""
+            document.getElementById("descripcionMod").style.borderBlockColor = ""
+            document.getElementById("imagenMod").style.borderBlockColor = ""
+            this.nombre = ""
+            this.temporadas = 0
+            this.capitulos = 0
+            this.descripcion = ""
+            this.imagen = ""
+            document.getElementById("upButton").disabled = true
+        },
+        update(){
+            let url = this.url  +"/"+document.getElementById("idMod").value
             
             let anime = {
                 nombre: this.nombre,
