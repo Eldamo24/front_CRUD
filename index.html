@@ -7,10 +7,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+
+
     <title>Animes</title>
 </head>
 
-<body>
+<body class="styleBody"> 
     <main>
         <div id="app">
             <div id="cards">
@@ -19,7 +21,7 @@
                         <h1>Animes</h1>
                     </div>
                     <div class="d-flex justify-content-start align-items-center mt-5 mb-5">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn buttonStyle" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" v-on:click="this.limpiarDatos()">Nuevo Anime</button>
                         <!-- Modal nuevo -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -40,16 +42,20 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="temporadas" class="form-label">Temporadas</label>
-                                                <input type="text" class="form-control" id="temporadas" v-model="temporadas">
-                                                <div id="mensajeTemporadas"></div>                                            </div>
+                                                <input type="text" class="form-control" id="temporadas"
+                                                    v-model="temporadas">
+                                                <div id="mensajeTemporadas"></div>
+                                            </div>
                                             <div class="mb-3">
                                                 <label for="capitulos" class="form-label">Capitulos</label>
-                                                <input type="text" class="form-control" id="capitulos" v-model="capitulos">
+                                                <input type="text" class="form-control" id="capitulos"
+                                                    v-model="capitulos">
                                                 <div id="mensajeCapitulos"></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="descripcion" class="form-label">Descripcion</label>
-                                                <input type="text" class="form-control" id="descripcion" v-model="descripcion">
+                                                <input type="text" class="form-control" id="descripcion"
+                                                    v-model="descripcion">
                                                 <div id="mensajeDescripcion"></div>
                                             </div>
                                             <div class="mb-3">
@@ -60,9 +66,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
+                                        <button type="button" class="btn buttonStyle"
                                             data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary" v-on:click="crear()" data-bs-dismiss="modal" id="guardarAnime">Crear</button>
+                                        <button type="button" class="btn buttonStyle" v-on:click="crear()"
+                                            data-bs-dismiss="modal" id="guardarAnime">Crear</button>
                                     </div>
                                 </div>
                             </div>
@@ -73,18 +80,19 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center"
                             v-for="anime in this.animes">
-                            <div class="card mt-3 mb-3" style="width: 18rem;">
+                            <div class="myCards card mt-3 mb-3" style="width: 18rem;">
                                 <img :src="anime.imagen" class="card-img-top" :alt="anime.nombre">
                                 <div class="card-body">
                                     <h5 class="card-title">{{anime.nombre}}</h5>
                                     <p class="card-text" id="contenido">{{anime.descripcion}}</p>
                                     <div class="d-flex justify-content-around align-items-center">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button" class="btn buttonStyle" data-bs-toggle="modal"
                                             :data-bs-target="'#see'+anime.id">Ver mas</button>
-                                        <button type="button" class="btn btn-primary"
+                                        <button type="button" class="btn buttonStyle"
                                             v-on:click="this.delete(anime.id)">Eliminar</button>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        :data-bs-target="'#update'+anime.id" v-on:click="this.cargarDatos(anime.id)">Editar</button>
+                                        <button type="button" class="btn buttonStyle" data-bs-toggle="modal"
+                                            :data-bs-target="'#update'+anime.id"
+                                            v-on:click="this.cargarDatos(anime.id)">Editar</button>
                                     </div>
                                 </div>
                             </div>
@@ -106,70 +114,79 @@
                                             <p>Capitulos: {{anime.capitulos}}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
+                                            <button type="button" class="btn buttonStyle"
                                                 data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" :id="'update'+anime.id" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Anime</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div>
-                                            <div class="mb-3">
-                                                <label for="nombre" class="form-label">Nombre</label>
-                                                <input type="text" class="form-control" id="nombreMod" v-model="nombre">
-                                                <div id="mensajeNombreMod"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="temporadas" class="form-label">Temporadas</label>
-                                                <input type="text" class="form-control" id="temporadasMod" v-model="temporadas">
-                                                <div id="temporadasMensajeMod"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="capitulos" class="form-label">Capitulos</label>
-                                                <input type="text" class="form-control" id="capitulosMod" v-model="capitulos">
-                                                <div id="capitulosMensajeMod"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="descripcion" class="form-label">Descripcion</label>
-                                                <input type="text" class="form-control" id="descripcionMod" v-model="descripcion">
-                                                <div id="descripcionMensajeMod"></div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="imagen" class="form-label">Imagen</label>
-                                                <input type="text" class="form-control" id="imagenMod" v-model="imagen">
-                                                <div id="imagenMensajeMod"></div>
+                            <div class="modal fade" :id="'update'+anime.id" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Anime</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                <div class="mb-3">
+                                                    <label for="nombre" class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombreMod"
+                                                        v-model="nombre">
+                                                    <div id="mensajeNombreMod"></div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="temporadas" class="form-label">Temporadas</label>
+                                                    <input type="text" class="form-control" id="temporadasMod"
+                                                        v-model="temporadas">
+                                                    <div id="temporadasMensajeMod"></div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="capitulos" class="form-label">Capitulos</label>
+                                                    <input type="text" class="form-control" id="capitulosMod"
+                                                        v-model="capitulos">
+                                                    <div id="capitulosMensajeMod"></div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="descripcion" class="form-label">Descripcion</label>
+                                                    <input type="text" class="form-control" id="descripcionMod"
+                                                        v-model="descripcion">
+                                                    <div id="descripcionMensajeMod"></div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="imagen" class="form-label">Imagen</label>
+                                                    <input type="text" class="form-control" id="imagenMod"
+                                                        v-model="imagen">
+                                                    <div id="imagenMensajeMod"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary" v-on:click="this.update(anime.id)" data-bs-dismiss="modal">Actualizar</button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn buttonStyle"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn buttonStyle"
+                                                v-on:click="this.update(anime.id)"
+                                                data-bs-dismiss="modal">Actualizar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/animes.js"></script>
-    <script src="js/validaciones.js"></script>   
+    <script src="js/validaciones.js"></script>
+
 </body>
 
 </html>

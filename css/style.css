@@ -1,3 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.styleBody{
+    background-color: #08C3E0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+.myCards{
+    background-color: #A5E9F3;
+}
+
+.buttonStyle{
+    background-color: #0480A2;
+    color: white;
+}
+
+.buttonStyle:hover{
+    background-color: #024EBD;
+    color: #A5E9F3;
+}
+
 #contenido {
     overflow:hidden;
     white-space:nowrap;
