@@ -53,13 +53,35 @@ const myApp = {
             .then(response => response.json())
             .then(data =>{
                 anime = data
-                this.id = anime.id
                 this.nombre = anime.nombre
                 this.temporadas = anime.temporadas
                 this.capitulos = anime.capitulos
                 this.descripcion = anime.descripcion
                 this.imagen = anime.imagen
             })
+        },
+        update(id){
+            let url = this.url  +"/"+id
+            
+            let anime = {
+                nombre: this.nombre,
+                temporadas: this.temporadas,
+                capitulos: this.capitulos,
+                descripcion: this.descripcion,
+                imagen: this.imagen
+            }
+            let options ={
+                body: JSON.stringify(anime),
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                redirect: "follow"
+            }
+            fetch(url, options)
+            .then(function () {
+                alert("Anime modificado")
+                location.reload()
+            })
+            
         }
     },
     mounted(){
