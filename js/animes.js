@@ -16,6 +16,9 @@ const myApp = {
             fetch(this.url)
             .then(response => response.json())
             .then(data => this.animes = data)
+            .catch(err => {
+                console.error(err);
+            })
         },
         delete(id){
             let url = this.url +"/"+id
